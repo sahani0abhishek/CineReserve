@@ -1,0 +1,289 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #020617;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.app {
+  min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(to right, #020617, #0f172a);
+  color: white;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+  .header h1 {
+    font-size: 55px;
+    margin: 0;
+  }
+
+  .header p {
+    font-size: 18px;
+    color: #cbd5e1;
+  }
+
+  .header button {
+    margin-top: 15px;
+    background: crimson;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+/* AUTH */
+.auth-box {
+  width: 420px;
+  margin: 50px auto;
+  background: rgba(31, 41, 55, 0.95);
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+}
+
+  .auth-box h2 {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  .auth-box input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+  }
+
+  .auth-box button {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(to right, #dc2626, #991b1b);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  .auth-box p {
+    text-align: center;
+    margin-top: 20px;
+    cursor: pointer;
+    color: #60a5fa;
+  }
+
+/* ADMIN */
+.admin-dashboard {
+  width: 700px;
+  margin: 50px auto;
+  background: rgba(31, 41, 55, 0.95);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+  .admin-dashboard h2 {
+    margin-bottom: 30px;
+  }
+
+.admin-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+  .admin-actions button {
+    padding: 15px 25px;
+    background: linear-gradient(to right, #2563eb, #1d4ed8);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+/* MAIN */
+.layout {
+  display: grid;
+  grid-template-columns: 320px 1fr 320px;
+  gap: 20px;
+}
+
+.movies-panel,
+.seat-panel,
+.checkout-panel {
+  background: rgba(31, 41, 55, 0.95);
+  padding: 20px;
+  border-radius: 20px;
+}
+
+/* MOVIES */
+.movie-card {
+  background: #1e293b;
+  padding: 15px;
+  border-radius: 16px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: 0.3s;
+}
+
+  .movie-card:hover {
+    transform: scale(1.02);
+  }
+
+  .movie-card.active {
+    border: 2px solid #3b82f6;
+  }
+
+  .movie-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .movie-card h3 {
+    margin-top: 12px;
+    margin-bottom: 8px;
+  }
+
+  .movie-card p {
+    margin: 6px 0;
+  }
+
+/* SHOWTIMES */
+.showtime-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+  .showtime-list span {
+    background: #2563eb;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    color: white;
+  }
+
+/* SCREEN */
+.screen {
+  background: linear-gradient(to right, #2563eb, #06b6d4);
+  text-align: center;
+  padding: 14px;
+  border-radius: 30px;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+/* SEATS */
+.seat-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 55px);
+  gap: 10px;
+  justify-content: center;
+}
+
+.seat {
+  width: 50px;
+  height: 50px;
+  background: green;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+  .seat:hover {
+    transform: scale(1.08);
+  }
+
+.selected {
+  background: #2563eb !important;
+}
+
+.vip {
+  background: gold;
+  color: black;
+}
+
+.sold {
+  background: gray !important;
+  cursor: not-allowed;
+}
+
+/* LEGEND */
+.legend {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  font-size: 13px;
+}
+
+  .legend div {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+.legend-box {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+}
+
+.available {
+  background: green;
+}
+
+.selected-seat {
+  background: #2563eb;
+}
+
+.vip-seat {
+  background: gold;
+}
+
+.sold-seat {
+  background: gray;
+}
+
+/* CHECKOUT */
+.checkout-panel p {
+  font-size: 16px;
+  margin: 15px 0;
+}
+
+.checkout-panel button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+  background: linear-gradient(to right, #dc2626, #991b1b);
+  border: none;
+  color: white;
+  border-radius: 12px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+  .checkout-panel button:hover,
+  .admin-actions button:hover,
+  .auth-box button:hover {
+    opacity: 0.9;
+  }

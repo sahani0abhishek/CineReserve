@@ -1,0 +1,151 @@
+<div class="app">
+
+  <div class="header">
+    <h1>🎬 CineReserve</h1>
+    <p>Real-Time Movie Ticket Booking Platform</p>
+
+    <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+  </div>
+
+  <!-- LOGIN / REGISTER -->
+  <div class="auth-box" *ngIf="!isLoggedIn">
+
+    <!-- LOGIN -->
+    <div *ngIf="!showRegister">
+      <h2>Login</h2>
+
+      <input type="email"
+             placeholder="Enter Email"
+             [(ngModel)]="loginData.email" />
+
+      <input type="password"
+             placeholder="Enter Password"
+             [(ngModel)]="loginData.password" />
+
+      <button (click)="login()">Login</button>
+
+      <p (click)="showRegister = true">
+        New User? Register Here
+      </p>
+    </div>
+
+    <!-- REGISTER -->
+    <div *ngIf="showRegister">
+      <h2>Register</h2>
+
+      <input type="text"
+             placeholder="Full Name"
+             [(ngModel)]="registerData.fullName" />
+
+      <input type="email"
+             placeholder="Email"
+             [(ngModel)]="registerData.email" />
+
+      <input type="password"
+             placeholder="Password"
+             [(ngModel)]="registerData.passwordHash" />
+
+      <button (click)="register()">Register</button>
+
+      <p (click)="showRegister = false">
+        Already have account? Login
+      </p>
+    </div>
+
+  </div>
+
+  <!-- ADMIN DASHBOARD -->
+  <div class="admin-dashboard" *ngIf="isLoggedIn && isAdmin">
+    <h2>🎯 Admin Dashboard</h2>
+
+    <div class="admin-actions">
+      <button (click)="addMovie()">➕ Add Movie</button>
+      <button (click)="addShowtime()">🕒 Add Showtime</button>
+      <button (click)="viewBookings()">📋 View Bookings</button>
+    </div>
+  </div>
+
+  <!-- USER MAIN APP -->
+  <div class="layout" *ngIf="isLoggedIn && !isAdmin">
+
+    <!-- MOVIES -->
+    <div class="movies-panel">
+      <h2>Now Showing</h2>
+
+      <div class="movie-card"
+           *ngFor="let movie of movies"
+           [class.active]="selectedMovie?.id === movie.id"
+           (click)="selectMovie(movie)">
+        <img [src]="movie.image" [alt]="movie.title">
+
+        <h3>{{ movie.title }}</h3>
+
+        <p>{{ movie.description }}</p>
+
+        <p>
+          <strong>Duration:</strong> {{ movie.duration }}
+        </p>
+
+        <div class="showtime-list">
+          <span *ngFor="let time of movie.showtimes">
+            {{ time }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEATS -->
+    <div class="seat-panel">
+      <h2>Select Seats</h2>
+
+      <div class="screen">SCREEN</div>
+
+      <div class="seat-grid">
+        <div *ngFor="let seat of seats"
+             class="seat"
+             [class.vip]="seat.seatType === 'VIP'"
+             [class.selected]="isSelected(seat)"
+             [class.sold]="isSold(seat)"
+             (click)="toggleSeat(seat)">
+          {{ seat.rowNumber }}{{ seat.seatNumber }}
+        </div>
+      </div>
+
+      <div class="legend">
+        <div><span class="legend-box available"></span> Available</div>
+        <div><span class="legend-box selected-seat"></span> Selected</div>
+        <div><span class="legend-box vip-seat"></span> VIP</div>
+        <div><span class="legend-box sold-seat"></span> Sold</div>
+      </div>
+    </div>
+
+    <!-- CHECKOUT -->
+    <div class="checkout-panel">
+      <h2>Checkout</h2>
+
+      <p>
+        <strong>Movie:</strong>
+        {{ selectedMovie?.title || 'None Selected' }}
+      </p>
+
+      <p>
+        <strong>Showtime:</strong>
+        {{ selectedMovie?.showtimes?.[0] || 'Select Movie' }}
+      </p>
+
+      <p>
+        <strong>Seats Selected:</strong>
+        {{ selectedSeats.length }}
+      </p>
+
+      <p>
+        <strong>Total:</strong>
+        ₹{{ getTotal() }}
+      </p>
+
+      <button (click)="bookSeats()">Book Now</button>
+    </div>
+
+  </div>
+
+</div>

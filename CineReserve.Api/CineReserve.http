@@ -1,0 +1,6 @@
+@CineReserve_HostAddress = http://localhost:5057
+
+GET {{CineReserve_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
